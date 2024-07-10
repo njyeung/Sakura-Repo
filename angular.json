@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "ssg",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -26,11 +26,12 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
+              "src/favicon.png",
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -60,14 +61,20 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
-              "buildTarget": "Sakura:build:production"
+              "buildTarget": "Sakura:build:production",
+              "proxyConfig": "src/proxy-config.json"
             },
             "development": {
-              "buildTarget": "Sakura:build:development"
+              "buildTarget": "Sakura:build:development",
+              "proxyConfig": "src/proxy-config.json"
             }
           },
+          
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
@@ -97,5 +104,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

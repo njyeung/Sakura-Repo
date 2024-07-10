@@ -1,0 +1,174 @@
+.main-container {
+    min-height: 100vh;
+}
+.banner {
+    position: relative;
+    text-align: center;
+}
+@keyframes TitleAnimation {
+    0% {
+        font-size: 4rem;
+    }
+    100% {
+        font-size: 4.5rem;
+    }
+}
+@keyframes TitleAnimationMobile {
+    0% {
+        font-size: 2.5rem;
+    }
+    100% {
+        font-size: 3rem;
+    }
+}
+@keyframes BannerAnimation {
+    0% {
+        filter: brightness(70%);
+    }
+    100% {
+        filter: brightness(50%);
+    }
+}
+.bannerTitle {
+    font-size: 4.5rem;
+    font-family: Georgia, serif;
+    color:rgb(255, 255, 255);
+    font-weight: 300;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: 1.5s ease 0s 1 TitleAnimation;
+}
+.bannerImage {
+    filter: brightness(50%);
+    width: 100%;
+    height: 20rem;
+    object-fit:cover;
+    animation: 3s ease 0s 1 BannerAnimation;
+}
+.body {
+    padding-top: 5vh;
+    padding-left:10vw;
+    padding-right:10vw;
+    padding-bottom: 5vh;
+    text-align: center;
+}
+.header1 {
+    font-size: 2rem;
+}
+.paragraph {
+    font-size: 1.2rem;
+}
+#toMenuPage {
+    // if this looks stolen, it's because it is.
+    background-color: #EA4C89;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 7rem;
+    height: 3rem;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+#toMenuPage:hover,
+#toMenuPage:focus {
+    background-color: #ec008c;
+}
+.bold {
+    color: #EA4C89;
+    font-weight: bold;
+    text-decoration: none;
+}
+.bold:hover,
+.bold:focus {
+    color: #ec008c;
+}
+.spacer {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+@media (max-width: 1080px) {
+    .body {
+        padding-left:3vw;
+        padding-right:3vw;
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+    }
+    .header1 {
+        font-size: 1.6rem;
+    }
+    .paragraph {
+        font-size: 1rem;
+    }
+    .bannerImage {
+        width: 100%;
+        height: auto;
+        height: 30vw;
+    }
+    .bannerTitle {
+        font-size: 3rem;
+        animation: 1.5s ease 0s 1 TitleAnimationMobile;
+    }
+    .spacer {
+        margin-top: 3vh;
+        margin-bottom: 3vh;
+    }
+}
+
+@media (max-width: 700px) {
+    .bannerImage {
+        height: 40vw;
+    }
+    .bannerTitle {
+        font-size: 2.5rem;
+        animation: 1.5s ease 0s 1 TitleAnimationMobile2;
+    }
+}
+
+@media (max-width: 500px) {
+    .bannerImage {
+        height: 50vw;
+    }
+    .bannerTitle {
+        font-size: 2rem;
+        animation: 1.5s ease 0s 1 TitleAnimationMobile3;
+    }
+}
+
+@keyframes TitleAnimationMobile2 {
+    0% {
+        font-size: 2.2rem;
+    }
+    100% {
+        font-size: 2.5rem;
+    }
+}
+@keyframes TitleAnimationMobile3 {
+    0% {
+        font-size: 1.8rem;
+    }
+    100% {
+        font-size: 2rem;
+    }
+}

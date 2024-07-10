@@ -1,0 +1,58 @@
+
+<div class="main-container">
+    <div class="banner">
+        <img class="bannerImage" src={{bannerImage}} alt="sushi roll">
+        <div class="bannerTitle">
+            <p>
+                Welcome To
+            </p> 
+            <p>
+                Sakura Sushi & Grill
+            </p>
+        </div>
+    </div>
+    <div class="body">
+
+        <h1 class="header1">View Our Menu and Order Online</h1>
+        <p class="paragraph">
+            Start ordering online by clicking the button below. Simply select the menu items you want, add them to your cart and checkout. 
+            Your order will be sent to the restaurant. It's that easy!
+        </p>
+        <button id="toMenuPage" (click) = "goToMenuPage()">
+            Order Now
+        </button>
+    
+        <div class="spacer"></div>
+    
+        <h1 class="header1">Call Us To Place Special Rolls</h1>
+        <p class="paragraph">
+            Our limited time special rolls change often! Call us at <a class="bold" href="tel:+12622532888">262-253-2888</a> to ask about availability and place limited rolls.
+        </p>
+
+        <div class="spacer"></div>
+
+        <h1 class="header1">Now Hiring</h1>
+        <p class="paragraph">
+            Currently hiring kitchen assistants! Pick up an application in-person if interested.
+        </p>
+    </div>
+    <div *ngIf="specialRolls.length>0" class="banner">
+        <img class="bannerImage" src={{bannerImage2}} alt="sushi roll">
+        <div class="bannerTitle">
+            <p>
+                Limited Time
+            </p>
+            <p>
+                Special Rolls
+            </p>
+        </div>
+    </div>
+    <div class="body">
+        <div *ngFor="let roll of specialRolls;">
+            <h1>{{roll.name}} </h1>
+            <p class="paragraph">{{roll.description}}</p>
+            <p class="paragraph">${{roll.price}}</p> 
+            <div class="spacer"></div>
+        </div>
+    </div>
+</div>

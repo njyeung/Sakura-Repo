@@ -1,0 +1,76 @@
+<div class="cart-summary">
+    <div *ngIf = "displayCart.length > 0">
+        <h3>Your Cart</h3>
+        <div *ngFor="let cartItem of displayCart">
+            <div class="cart-item">
+                <p class="item-name">{{ cartItem.item.name }}</p>
+                <div class="quantity-control">
+                    <button (click)="remove(cartItem.item)">-</button>
+                    <span>{{ cartItem.quantity }}</span>
+                    <button (click)="add(cartItem.item)">+</button>
+                </div>
+                <h6 class="item-total">${{ (cartItem.item.price * cartItem.quantity).toFixed(2)}}</h6>
+            </div>
+            <div class="individual-instruction" *ngIf=" cartItem.item.individualNotes!='' ">
+                <p class="item-name">Notes:&NonBreakingSpace;&NonBreakingSpace;<strong>{{cartItem.item.individualNotes}}</strong></p>
+            </div>
+            <div class="border"></div>
+        </div>
+        <div class="cart-totals" >
+            <p>Subtotal: ${{ subtotal.toFixed(2) }}</p>
+            <p>Tax: ${{ tax.toFixed(2) }}</p>
+            <div class="tip">
+                <p>Tip: $&nbsp;</p> 
+                <input class="tip-input" (keydown)="isArrowKey($event)" (keypress)="isValidKey($event)" (keyup)="formatTip($event)" placeholder="0.00" value={{displayTip}} type="number" step="0.01">
+            </div>
+            <h5>Total: ${{ total.toFixed(2) }}</h5>
+            <button class="checkout-button" (click)="toggleCheckout()">Checkout</button>
+        </div>
+    </div>
+    <div id="scroll-to-order-form" class="spacer"></div>
+    <div class="order-form-container" *ngIf="displayCart.length > 0 && checkout==true">
+        <h3>Place Order For Pickup</h3>
+        <p>*Payment will be taken in-store. You will be notificed via email when your order is ready</p>
+        <form #orderform>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" ngModel required>
+            </div>
+          
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" ngModel required>
+            </div>
+          
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" ngModel required>
+            </div>
+          
+            <div class="form-group">
+                <label for="instructions">Instructions:</label>
+                <textarea id="instructions" name="instructions" placeholder="Special requests may be subject to additional charges..." ngModel></textarea>
+            </div>
+            <div class="submit">
+                <button *ngIf="loadingAnimation == false" (click)="onSubmit(orderform)" type="button" class="checkout-button">Place Order</button>
+                <button *ngIf="loadingAnimation == true" type="button" class="loading-button"> Submitting . . . </button>
+            </div>
+        </form>
+    </div>
+    <div class="spacer" *ngIf="error==true"></div>
+    <div class="error" *ngIf="error==true">
+        <div id="scroll-to-error" class="spacer"></div>
+        <img src={{errorSrc}} alt="Checkmark" class="image">
+        <h3>{{errorHeader}}</h3>
+        <p>{{errorDescription}}</p>
+        <div class="spacer"></div>
+    </div>
+    
+    <div *ngIf = "displayCart.length == 0">
+        <div class="empty-cart">
+            <img src="assets/images/empty-cart.png" alt="Empty Cart" class="image">
+            <h3>Your Cart is Empty</h3>
+            <p>Add items to your cart to see them here.</p>
+        </div>
+    </div>
+</div>

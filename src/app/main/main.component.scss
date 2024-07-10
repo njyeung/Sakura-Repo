@@ -1,0 +1,179 @@
+// Main container
+.main-container {
+    display: grid;
+                    /* header, main, footer */
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+// NAV BAR
+.nav-bar {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-bottom: 0.2rem solid #e9ecef;
+    width: 100%;
+    height: auto;
+}
+.centralize {
+    max-width: 60%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    /* 1x4 grid */
+    // logo, menu, hours, blank, status, cart
+    grid-template: 1fr / 5fr 5fr 5fr 60fr 5fr 5fr;
+}
+.nav-item {
+    user-select: none;
+    color: black;
+    text-decoration:none;
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin: 0 1rem 0 1rem;
+}
+#logo {
+    width: 6rem;
+    padding: 0.3rem;
+}
+#cart {
+    width: 2.5rem;
+    padding: 0.3rem;
+    transition: transform 0.3s ease;
+}
+.nav-item:hover {
+    color: #ec008c;
+    cursor: pointer;
+}
+.cart-container {
+    position:relative;
+}
+.item-counter {
+    color: rgb(175, 16, 16);
+    background-color: #eeeeeecf;
+    padding-left: 2px;
+    padding-right: 1px;
+    padding-bottom: 1px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    font-weight: bold;
+    border: 1px solid grey;
+    border-radius: 30%;
+    position: absolute;
+    top: -10px;
+    left: 12px;
+}
+.nav-item:active {
+    color: #ec008c;
+}
+#cart:hover {
+    //https://codepen.io/sosuke/pen/Pjoqqp to get this from hex
+    filter: invert(11%) sepia(89%) saturate(7494%) hue-rotate(317deg) brightness(94%) contrast(106%);
+    transform: scale(1.07);
+    transition: transform 0.2s ease;
+}
+
+#open-button {
+    border-radius: 7px;
+    color:white;
+    border-style: none;
+    background-color: rgb(187, 0, 0);
+}
+#open-button:hover {
+    cursor:default;
+}
+.sticky{
+    display: flex;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    z-index: 10;
+}
+
+@media (max-width: 1080px) {
+    .centralize {
+        max-width: 100%;
+    }
+    .nav-item {
+        color: black;
+        text-decoration:none;
+        font-size: 1rem;
+        margin: 0.5rem;
+    }
+    #logo {
+        width: 3.5rem;
+    }
+    #cart {
+        width: 2rem;
+        left: -30px;
+        top: -20px;
+    }
+    .item-counter {
+        position: absolute;
+        font-size: 0.8rem;
+        top: 0px;
+        left: 10px;
+    }
+}
+
+// CONTENT
+#content{
+    background-color: rgb(253, 253, 253);
+    padding-top:5rem;
+}
+@media (max-width: 1080px) {
+    #content{
+        padding-top: 4rem;
+    }
+}
+
+// FOOTER
+.footer {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    height: 20rem;
+    background: linear-gradient(0deg, hwb(0 0% 100% / 0.3) 0%, hwb(0 0% 100% / 0) 100%);
+    border-top: 0.2rem solid #e9ecef;
+}
+.footer-container{
+    display:flex;
+    margin:3rem;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1rem;
+}
+#phone-number-container {
+    margin-left: 0;
+}
+#phonenumber {
+    margin-bottom: .2rem;
+}
+#googlemaps {
+    margin: 0 2rem 0 2rem;
+    width:20vw;
+    height:20vw;
+    max-width: 15rem;
+    max-height: 15rem;
+}
+
+@media (max-width: 1080px) {
+    .footer {
+        display: grid;
+        height: 7rem;
+        background: linear-gradient(0deg, hwb(0 0% 100% / 0.3) 0%, hwb(0 0% 100% / 0) 100%);
+        border-top: 0.2rem solid #e9ecef;
+    }
+    #googlemaps {
+        display:none;
+    }
+    .footer-container{
+        margin:1rem;
+        font-size: 1rem;
+    }
+    .extra-info {
+        display: none;
+    }
+}

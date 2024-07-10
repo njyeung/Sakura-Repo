@@ -1,0 +1,7 @@
+<div class="main-container">
+    <div class="grid-container">
+        <ssg-sidebar [categories] = 'categories' (selectedList)="changeSelectedCategories($event)"></ssg-sidebar>
+        <ssg-items-container [menu] = 'menu' [selectedCategories] = 'displayCategories' [categories] = 'categories' (cart)="addToCart($event)"></ssg-items-container>
+    </div>
+</div>
+

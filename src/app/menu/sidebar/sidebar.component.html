@@ -1,0 +1,12 @@
+<div class="sidenav" *ngIf="loaded==true">
+    <h5>
+        Categories
+    </h5>
+    <div class="categories-container">
+        <div *ngFor = "let category of categories">
+            <input id={{category}} type="checkbox" [checked]=false (change)="toggleSelect(category)">
+            <label for={{category}}>&nbsp;{{category}}</label><br>
+        </div>
+    </div>
+</div>
+

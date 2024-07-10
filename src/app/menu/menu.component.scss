@@ -1,0 +1,26 @@
+.main-container{
+    padding-left: 10vw;
+    padding-right: 10vw;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    min-height: 100vh;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-gap: 4vw;
+}
+
+@media (max-width: 1080px) {
+    .main-container{
+        padding-left: 5vw;
+        padding-right: 5vw;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 4vw;
+    }
+}

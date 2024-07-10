@@ -1,0 +1,89 @@
+<div class="body">
+    <div class="container">
+        <h1 class="header1">Hours</h1>
+        <div class = "spacer"></div>
+        <table class = "table">
+            <tr *ngIf="day=='Sunday'" class="highlight">
+                <td>Sunday</td>
+                <th colspan="2">12:00&nbsp;PM - 9:00&nbsp;PM</th>
+            </tr>
+            <tr *ngIf="day!='Sunday'">
+                <td>Sunday</td>
+                <th colspan="2">12:00&nbsp;PM - 9:00&nbsp;PM</th>
+            </tr>
+            <tr *ngIf="day=='Monday'" class="highlight">
+                <td>Monday</td>
+                <th colspan="2">CLOSED</th>
+            </tr>
+            <tr *ngIf="day!='Monday'">
+                <td>Monday</td>
+                <th colspan="2">CLOSED</th>
+            </tr>
+            <tr *ngIf="day=='Tuesday'" class="highlight">
+                <td>Tuesday</td>
+                <th>11:00&nbsp;AM - 3:00&nbsp;PM</th>
+                <th>4:00&nbsp;PM - 9:30&nbsp;PM</th>
+            </tr>
+            <tr *ngIf="day!='Tuesday'">
+                <td>Tuesday</td>
+                <th>11:00&nbsp;AM - 3:00&nbsp;PM</th>
+                <th>4:00&nbsp;PM - 9:30&nbsp;PM</th>
+            </tr>
+            <tr *ngIf="day=='Wednesday'" class="highlight">
+                <td>Wednesday</td>
+                <th>11:00&nbsp;AM - 3:00&nbsp;PM</th>
+                <th>4:00&nbsp;PM - 9:30&nbsp;PM</th>
+            </tr>
+            <tr *ngIf="day!='Wednesday'">
+                <td>Wednesday</td>
+                <th>11:00&nbsp;AM - 3:00&nbsp;PM</th>
+                <th>4:00&nbsp;PM - 9:30&nbsp;PM</th>
+            </tr>
+            <tr *ngIf="day=='Thursday'" class="highlight">
+                <td>Thursday</td>
+                <th>11:00&nbsp;AM - 3:00&nbsp;PM</th>
+                <th>4:00&nbsp;PM - 9:30&nbsp;PM</th>
+            </tr>
+            <tr *ngIf="day!='Thursday'">
+                <td>Thursday</td>
+                <th>11:00&nbsp;AM - 3:00&nbsp;PM</th>
+                <th>4:00&nbsp;PM - 9:30&nbsp;PM</th>
+            </tr>
+            <tr *ngIf="day=='Friday'" class="highlight">
+                <td>Friday</td>
+                <th>11:00&nbsp;AM - 3:00&nbsp;PM</th>
+                <th>4:00&nbsp;PM - 10:00&nbsp;PM</th>
+            </tr>
+            <tr *ngIf="day!='Friday'">
+                <td>Friday</td>
+                <th>11:00&nbsp;AM - 3:00&nbsp;PM</th>
+                <th>4:00&nbsp;PM - 10:00&nbsp;PM</th>
+            </tr>
+            <tr *ngIf="day=='Saturday'" class="highlight">
+                <td>Saturday</td>
+                <th colspan="2">12:00&nbsp;PM - 10:00&nbsp;PM</th>
+            </tr>
+            <tr *ngIf="day!='Saturday'">
+                <td>Saturday</td>
+                <th colspan="2">12:00&nbsp;PM - 10:00&nbsp;PM</th>
+            </tr>
+        </table>
+        <div class="spacer"></div>
+        <h1 class="header1">Location</h1>
+        <div class="spacer"></div>
+        <div class = "addressContainer">
+            <p class="address">
+                Sakura Sushi & Grill
+            </p>
+            <p class="address">
+                N78W14565 Appleton Ave
+            </p>
+            <p class="address">
+                Menomonee Falls, Wisconsin 53051
+            </p>
+        </div>
+        <div class="spacer"></div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2910.3724880556097!2d-88.09557792269628!3d43.15970478420691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8804fe01ce952015%3A0x50c749ebecad96b!2sSakura%20Sushi%20and%20Grill!5e0!3m2!1sen!2sus!4v1707193910995!5m2!1sen!2sus" 
+        id="googlemaps" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
