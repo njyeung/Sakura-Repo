@@ -52,7 +52,7 @@ export class CartComponent {
     if(this.name === undefined || this.email === undefined || this.phoneNumber === undefined || this.instructions === undefined) {
       return;
     }
-
+    
     var ids : number[] = [];
     var individualNotes: string[] = [];
     this.cart.forEach((menuItem)=> {ids.push(menuItem.id); individualNotes.push(menuItem.individualNotes);});
@@ -61,6 +61,7 @@ export class CartComponent {
       this.tip = 0.00  
     }
     this.tip = Number(this.displayTip)
+    // uncaught errors will default to tip being $0 because that's what it is initiated to above 
 
     var order: Order = {
       email: this.email,
