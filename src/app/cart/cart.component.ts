@@ -56,6 +56,10 @@ export class CartComponent {
     var ids : number[] = [];
     var individualNotes: string[] = [];
     this.cart.forEach((menuItem)=> {ids.push(menuItem.id); individualNotes.push(menuItem.individualNotes);});
+    
+    if(this.displayTip!='') {
+      this.tip = 0.00  
+    }
     this.tip = Number(this.displayTip)
 
     var order: Order = {
