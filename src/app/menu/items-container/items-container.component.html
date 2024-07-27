@@ -1,421 +1,477 @@
 <!-- POPUP -->
 <div class="overlay" *ngIf="selectedItem != undefined" (click)="closePopup()"></div>
 <div class="popup" *ngIf="selectedItem != undefined">
-    <h2>{{ selectedItem.name }}</h2>
-    <p *ngIf="selectedItem.description!='NULL'">{{ selectedItem.description }}</p>
+  <h2>{{ selectedItem.name }}</h2>
+  <p *ngIf="selectedItem.description!='NULL'">{{ selectedItem.description }}</p>
 
-    <div *ngIf="selectedItem.imageUrl!= 'string'" class="image-container">
-      <img class="image" (click)="openImage(selectedItem.imageUrl)" src="{{selectedItem.imageUrl}}">
-    </div>
+  <div *ngIf="selectedItem.imageUrl!= 'string'" class="image-container">
+    <img class="image" (click)="openImage(selectedItem.imageUrl)" src="{{selectedItem.imageUrl}}">
+  </div>
 
-    <!--Options for Sushi/Sashimi-->
-    <div class="options" *ngIf="selectedItem.category == 'Sushi/Sashimi'">
-        <fieldset>
-            <h5>Select Sushi or Sashimi:</h5>      
-            <div>
-              <input required type="radio" id="sushiSelect" name="drone" value="Sushi" [(ngModel)]="selectedOption" unchecked/>
-              <label for="sushiSelect">Sushi</label>
-            </div>
-            <div>
-              <input required type="radio" id="sashimiSelect" name="drone" value="Sashimi" [(ngModel)]="selectedOption" unchecked/>
-              <label for="sashimiSelect">Sashimi</label>
-            </div>
-          </fieldset>
-    </div>
-    <!--Options for Thai Curry-->
-    <div class="options" *ngIf="selectedItem.name == 'Thai Curry Vegetable' || selectedItem.name == 'Thai Curry Chicken' || selectedItem.name == 'Thai Curry Shrimp' || selectedItem.name == 'Thai Curry Beef'">
-        <fieldset>
-            <h5>Select Red or Green Curry:</h5>      
-            <div>
-              <input required type="radio" id="redSelect" name="drone" value="Red Curry" [(ngModel)]="selectedOption" unchecked/>
-              <label for="redSelect">Red Curry</label>
-            </div>
-            <div>
-              <input required type="radio" id="greenSelect" name="drone" value="Green Curry" [(ngModel)]="selectedOption" unchecked/>
-              <label for="greenSelect">Green Curry</label>
-            </div>
-          </fieldset>
-    </div>
-    <!--Options for Thai Basil-->
-    <div class="options" *ngIf="selectedItem.name == 'Thai Basil'">
-        <fieldset>
-            <h5>Select Red or Green Curry:</h5>      
-            <div>
-              <input required type="radio" id="shrimpSelect" name="drone" value="Shrimp" [(ngModel)]="selectedOption" unchecked/>
-              <label for="shrimpSelect">Shrimp</label>
-            </div>
-            <div>
-              <input required type="radio" id="beefSelect" name="drone" value="Beef" [(ngModel)]="selectedOption" unchecked/>
-              <label for="beefSelect">Beef</label>
-            </div>
-          </fieldset>
-    </div>
-    <!--Options for Maki Lunch-->
-    <div class="options" *ngIf="selectedItem.category == 'Signature Lunch'">
-      <fieldset>
-          <h5>Select seaweed salad or spicy kani salad:</h5>      
-          <div>
-            <input required type="radio" id="seaweedSelect" name="drone" value="Seaweed Salad" [(ngModel)]="selectedOption" unchecked/>
-            <label for="seaweedSelect">Seaweed Salad</label>
-          </div>
-          <div>
-            <input required type="radio" id="kaniSelect" name="drone" value="Kani Salad" [(ngModel)]="selectedOption" unchecked/>
-            <label for="kaniSelect">Kani Salad</label>
-          </div>
-        </fieldset>
-    </div>
-    <!--Options for Choose 1 Bento Box-->
-    <div class="options" *ngIf="selectedItem.name == 'Choose 1 Bento Box'">
-      <fieldset>
-          <h5>Select a protein:</h5>      
-          <div>
-            <input required type="radio" id="tofuSelect" name="drone" value="Tofu Teriyaki" [(ngModel)]="selectedOption" unchecked/>
-            <label for="tofuSelect">Tofu Teriyaki</label>
-          </div>
-          <div>
-            <input required type="radio" id="beefSelect" name="drone" value="Beef Teriyaki" [(ngModel)]="selectedOption" unchecked/>
-            <label for="beefSelect">Beef Teriyaki</label>
-          </div>
-          <div>
-            <input required type="radio" id="chickenSelect" name="drone" value="Chicken Teriyaki" [(ngModel)]="selectedOption" unchecked/>
-            <label for="chickenSelect">Chicken Teriyaki</label>
-          </div>
-          <div>
-            <input required type="radio" id="salmonSelect" name="drone" value="Salmon Teriyaki" [(ngModel)]="selectedOption" unchecked/>
-            <label for="salmonSelect">Salmon Teriyaki</label>
-          </div>
-          <div>
-            <input required type="radio" id="chickenKatsuSelect" name="drone" value="Chicken Katsu" [(ngModel)]="selectedOption" unchecked/>
-            <label for="chickenKatsuSelect">Chicken Katsu</label>
-          </div>
-          <div>
-            <input required type="radio" id="porkKatsuSelect" name="drone" value="Pork Katsu" [(ngModel)]="selectedOption" unchecked/>
-            <label for="porkKatsuSelect">Pork Katsu</label>
-          </div>
-          <div>
-            <input required type="radio" id="chickenVegTempSelect" name="drone" value="Chicken & Vegetable Tempura" [(ngModel)]="selectedOption" unchecked/>
-            <label for="chickenVegTempSelect">Chicken & Vegetable Tempura</label>
-          </div>
-          <div>
-            <input required type="radio" id="shrimpVegTempSelect" name="drone" value="Shrimp & Vegetable Tempura" [(ngModel)]="selectedOption" unchecked/>
-            <label for="shrimpVegTempSelect">Shrimp & Vegetable Tempura</label>
-          </div>
-        </fieldset>
-    </div>
-    <!--Options for Choose 2 Bento Box-->
-    <div class="options" *ngIf="selectedItem.name == 'Choose 2 Bento Box'">
-      <fieldset>
-          <h5>Select 2 proteins:</h5>      
-          <div>
-            <input required type="checkbox" id="tofuSelect" name="drone" (change)="choose2('Tofu Teriyaki')" unchecked/>
-            <label for="tofuSelect">Tofu Teriyaki</label>
-          </div>
-          <div>
-            <input required type="checkbox" id="beefSelect" name="drone" (change)="choose2('Beef Teriyaki')" unchecked/>
-            <label for="beefSelect">Beef Teriyaki</label>
-          </div>
-          <div>
-            <input required type="checkbox" id="chickenSelect" name="drone" (change)="choose2('Chicken Teriyaki')" unchecked/>
-            <label for="chickenSelect">Chicken Teriyaki</label>
-          </div>
-          <div>
-            <input required type="checkbox" id="salmonSelect" name="drone" (change)="choose2('Tofu Teriyaki')" unchecked/>
-            <label for="salmonSelect">Salmon Teriyaki</label>
-          </div>
-          <div>
-            <input required type="checkbox" id="chickenKatsuSelect" name="drone" (change)="choose2('Chicken Katsu')" unchecked/>
-            <label for="chickenKatsuSelect">Chicken Katsu</label>
-          </div>
-          <div>
-            <input required type="checkbox" id="porkKatsuSelect" name="drone" (change)="choose2('Pork Katsu')" unchecked/>
-            <label for="porkKatsuSelect">Pork Katsu</label>
-          </div>
-          <div>
-            <input required type="checkbox" id="chickenVegTempSelect" name="drone" (change)="choose2('Chicken & Vegetable Tempura')" unchecked/>
-            <label for="chickenVegTempSelect">Chicken & Vegetable Tempura</label>
-          </div>
-          <div>
-            <input required type="checkbox" id="shrimpVegTempSelect" name="drone" (change)="choose2('Shrimp & Vegetable Tempura')" unchecked/>
-            <label for="shrimpVegTempSelect">Shrimp & Vegetable Tempura</label>
-          </div>
-        </fieldset>
-    </div>
-    <!--Options for Any 2 Rolls-->
-    <div class="options" *ngIf="selectedItem.name == 'Any 2 Rolls'">
-      <fieldset>
-          <h5>Select 2 rolls:</h5>
-          <div class="twoCols">
-            <div>
-              <input required type="checkbox" id="tunaSelect" name="drone" (change)="choose2('Tuna Roll')" unchecked/>
-              <label for="tunaSelect">Tuna</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="salmonSelect" name="drone" (change)="choose2('Salmon Roll')" unchecked/>
-              <label for="salmonSelect">Salmon</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="yellowTailSelect" name="drone" (change)="choose2('YellowTail Roll')" unchecked/>
-              <label for="yellowTailSelect">YellowTail</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="tunaAvoSelect" name="drone" (change)="choose2('Tuna Avocado Roll')" unchecked/>
-              <label for="tunaAvoSelect">Tuna Avocado</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="salmonAvoSelect" name="drone" (change)="choose2('Salmon Avocado Roll')" unchecked/>
-              <label for="salmonAvoSelect">Salmon Avocado</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="yellowTailAvoSelect" name="drone" (change)="choose2('YellowTail Avocado Roll')" unchecked/>
-              <label for="yellowTailAvoSelect">YellowTail Avocado</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="californiaSelect" name="drone" (change)="choose2('California Roll')" unchecked/>
-              <label for="californiaSelect">California</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="spTunaSelect" name="drone" (change)="choose2('Spicy Tuna Roll')" unchecked/>
-              <label for="spTunaSelect">Spicy Tuna</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="spSalmonSelect" name="drone" (change)="choose2('Spicy Salmon Roll')" unchecked/>
-              <label for="spSalmonSelect">Spicy Salmon</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="spCrabSelect" name="drone" (change)="choose2('Spicy Crab Meat Roll')" unchecked/>
-              <label for="spCrabSelect">Spicy Crab Meat</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="shrimpTempSelect" name="drone" (change)="choose2('Shrimp Tempura Roll')" unchecked/>
-              <label for="shrimpTempSelect">Shrimp Tempura</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="philSelect" name="drone" (change)="choose2('Philadelphia Roll')" unchecked/>
-              <label for="philSelect">Philadelphia</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="chickenTempSelect" name="drone" (change)="choose2('Chicken Tempura Roll')" unchecked/>
-              <label for="chickenTempSelect">Chicken Tempura</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="steakTempSelect" name="drone" (change)="choose2('Steak Tempura Roll')" unchecked/>
-              <label for="steakTempSelect">Steak Tempura</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="oshinkSelect" name="drone" (change)="choose2('Oshinko Roll')" unchecked/>
-              <label for="oshinkSelect">Oshinko</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="eelCuSelect" name="drone" (change)="choose2('Eel Cucumber Roll')" unchecked/>
-              <label for="eelCuSelect">Eel Cucumber</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="eelAvoSelect" name="drone" (change)="choose2('Eel Avocado Roll')" unchecked/>
-              <label for="eelAvoSelect">Eel Avocado</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="cucumSelect" name="drone" (change)="choose2('Cucumber Roll')" unchecked/>
-              <label for="cucumSelect">Cucumber</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="avoSelect" name="drone" (change)="choose2('Avocado Roll')" unchecked/>
-              <label for="avoSelect">Avocado</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="aacSelect" name="drone" (change)="choose2('AAC Roll')" unchecked/>
-              <label for="aacSelect">AAC</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="sweetPoSelect" name="drone" (change)="choose2('Sweet Potato Roll')" unchecked/>
-              <label for="sweetPoSelect">Sweet Potato</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="bostonSelect" name="drone" (change)="choose2('Boston Roll')" unchecked/>
-              <label for="bostonSelect">Boston</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="alaskaSelect" name="drone" (change)="choose2('Alaska Roll')" unchecked/>
-              <label for="alaskaSelect">Alaska</label>
-            </div>
-          </div>  
-        </fieldset>
-    </div>
-    <!--Options for Any 3 Rolls-->
-    <div class="options" *ngIf="selectedItem.name == 'Any 3 Rolls'">
-      <fieldset>
-          <h5>Select 3 rolls:</h5>
-          <div class="twoCols">
-            <div>
-              <input required type="checkbox" id="tunaSelect" name="drone" (change)="choose3('Tuna Roll')" unchecked/>
-              <label for="tunaSelect">Tuna</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="salmonSelect" name="drone" (change)="choose3('Salmon Roll')" unchecked/>
-              <label for="salmonSelect">Salmon</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="yellowTailSelect" name="drone" (change)="choose3('YellowTail Roll')" unchecked/>
-              <label for="yellowTailSelect">YellowTail</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="tunaAvoSelect" name="drone" (change)="choose3('Tuna Avocado Roll')" unchecked/>
-              <label for="tunaAvoSelect">Tuna Avocado</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="salmonAvoSelect" name="drone" (change)="choose3('Salmon Avocado Roll')" unchecked/>
-              <label for="salmonAvoSelect">Salmon Avocado</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="yellowTailAvoSelect" name="drone" (change)="choose3('YellowTail Avocado Roll')" unchecked/>
-              <label for="yellowTailAvoSelect">YellowTail Avocado</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="californiaSelect" name="drone" (change)="choose3('California Roll')" unchecked/>
-              <label for="californiaSelect">California</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="spTunaSelect" name="drone" (change)="choose3('Spicy Tuna Roll')" unchecked/>
-              <label for="spTunaSelect">Spicy Tuna</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="spSalmonSelect" name="drone" (change)="choose3('Spicy Salmon Roll')" unchecked/>
-              <label for="spSalmonSelect">Spicy Salmon</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="spCrabSelect" name="drone" (change)="choose3('Spicy Crab Meat Roll')" unchecked/>
-              <label for="spCrabSelect">Spicy Crab Meat</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="shrimpTempSelect" name="drone" (change)="choose3('Shrimp Tempura Roll')" unchecked/>
-              <label for="shrimpTempSelect">Shrimp Tempura</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="philSelect" name="drone" (change)="choose3('Philadelphia Roll')" unchecked/>
-              <label for="philSelect">Philadelphia</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="chickenTempSelect" name="drone" (change)="choose3('Chicken Tempura Roll')" unchecked/>
-              <label for="chickenTempSelect">Chicken Tempura</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="steakTempSelect" name="drone" (change)="choose3('Steak Tempura Roll')" unchecked/>
-              <label for="steakTempSelect">Steak Tempura</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="oshinkSelect" name="drone" (change)="choose3('Oshinko Roll')" unchecked/>
-              <label for="oshinkSelect">Oshinko</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="eelCuSelect" name="drone" (change)="choose3('Eel Cucumber Roll')" unchecked/>
-              <label for="eelCuSelect">Eel Cucumber</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="eelAvoSelect" name="drone" (change)="choose3('Eel Avocado Roll')" unchecked/>
-              <label for="eelAvoSelect">Eel Avocado</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="cucumSelect" name="drone" (change)="choose3('Cucumber Roll')" unchecked/>
-              <label for="cucumSelect">Cucumber</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="avoSelect" name="drone" (change)="choose3('Avocado Roll')" unchecked/>
-              <label for="avoSelect">Avocado</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="aacSelect" name="drone" (change)="choose3('AAC Roll')" unchecked/>
-              <label for="aacSelect">AAC</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="sweetPoSelect" name="drone" (change)="choose3('Sweet Potato Roll')" unchecked/>
-              <label for="sweetPoSelect">Sweet Potato</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="bostonSelect" name="drone" (change)="choose3('Boston Roll')" unchecked/>
-              <label for="bostonSelect">Boston</label>
-            </div>
-            <div>
-              <input required type="checkbox" id="alaskaSelect" name="drone" (change)="choose3('Alaska Roll')" unchecked/>
-              <label for="alaskaSelect">Alaska</label>
-            </div>
-          </div>
-        </fieldset>
-    </div>
-
-    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-
-    <label class="additionalInstructions" for="individualNotes">Additional Notes:</label>
-    <textarea [(ngModel)]="selectedItem.individualNotes" placeholder="Special requests may be subject to additional charges..." id="popup-input"></textarea>
-    <div class="qcsubmit-span">
-      <div class="quantity-control">
-        <button (click)="quantitySubtract()"> - </button>
-        <span>{{ selectedQuantity }}</span>
-        <button (click)="quantityAdd()"> + </button>
+  <!--Options for Sushi/Sashimi-->
+  <div class="options" *ngIf="selectedItem.category == 'Sushi/Sashimi'">
+    <fieldset>
+      <h5>Select Sushi or Sashimi:</h5>
+      <div>
+        <input required type="radio" id="sushiSelect" name="drone" value="Sushi" [(ngModel)]="selectedOption"
+          unchecked />
+        <label for="sushiSelect">Sushi</label>
       </div>
-      <button class="submitButton" (click)="addToCart()">Add to Cart</button>
+      <div>
+        <input required type="radio" id="sashimiSelect" name="drone" value="Sashimi" [(ngModel)]="selectedOption"
+          unchecked />
+        <label for="sashimiSelect">Sashimi</label>
+      </div>
+    </fieldset>
+  </div>
+  <!--Options for Thai Curry-->
+  <div class="options"
+    *ngIf="selectedItem.name == 'Thai Curry Vegetable' || selectedItem.name == 'Thai Curry Chicken' || selectedItem.name == 'Thai Curry Shrimp' || selectedItem.name == 'Thai Curry Beef'">
+    <fieldset>
+      <h5>Select Red or Green Curry:</h5>
+      <div>
+        <input required type="radio" id="redSelect" name="drone" value="Red Curry" [(ngModel)]="selectedOption"
+          unchecked />
+        <label for="redSelect">Red Curry</label>
+      </div>
+      <div>
+        <input required type="radio" id="greenSelect" name="drone" value="Green Curry" [(ngModel)]="selectedOption"
+          unchecked />
+        <label for="greenSelect">Green Curry</label>
+      </div>
+    </fieldset>
+  </div>
+  <!--Options for Thai Basil-->
+  <div class="options" *ngIf="selectedItem.name == 'Thai Basil'">
+    <fieldset>
+      <h5>Select Red or Green Curry:</h5>
+      <div>
+        <input required type="radio" id="shrimpSelect" name="drone" value="Shrimp" [(ngModel)]="selectedOption"
+          unchecked />
+        <label for="shrimpSelect">Shrimp</label>
+      </div>
+      <div>
+        <input required type="radio" id="beefSelect" name="drone" value="Beef" [(ngModel)]="selectedOption" unchecked />
+        <label for="beefSelect">Beef</label>
+      </div>
+    </fieldset>
+  </div>
+  <!--Options for Maki Lunch-->
+  <div class="options" *ngIf="selectedItem.category == 'Signature Lunch'">
+    <fieldset>
+      <h5>Select seaweed salad or spicy kani salad:</h5>
+      <div>
+        <input required type="radio" id="seaweedSelect" name="drone" value="Seaweed Salad" [(ngModel)]="selectedOption"
+          unchecked />
+        <label for="seaweedSelect">Seaweed Salad</label>
+      </div>
+      <div>
+        <input required type="radio" id="kaniSelect" name="drone" value="Kani Salad" [(ngModel)]="selectedOption"
+          unchecked />
+        <label for="kaniSelect">Kani Salad</label>
+      </div>
+    </fieldset>
+  </div>
+  <!--Options for Choose 1 Bento Box-->
+  <div class="options" *ngIf="selectedItem.name == 'Choose 1 Bento Box'">
+    <fieldset>
+      <h5>Select a protein:</h5>
+      <div>
+        <input required type="radio" id="tofuSelect" name="drone" value="Tofu Teriyaki" [(ngModel)]="selectedOption"
+          unchecked />
+        <label for="tofuSelect">Tofu Teriyaki</label>
+      </div>
+      <div>
+        <input required type="radio" id="beefSelect" name="drone" value="Beef Teriyaki" [(ngModel)]="selectedOption"
+          unchecked />
+        <label for="beefSelect">Beef Teriyaki</label>
+      </div>
+      <div>
+        <input required type="radio" id="chickenSelect" name="drone" value="Chicken Teriyaki"
+          [(ngModel)]="selectedOption" unchecked />
+        <label for="chickenSelect">Chicken Teriyaki</label>
+      </div>
+      <div>
+        <input required type="radio" id="salmonSelect" name="drone" value="Salmon Teriyaki" [(ngModel)]="selectedOption"
+          unchecked />
+        <label for="salmonSelect">Salmon Teriyaki</label>
+      </div>
+      <div>
+        <input required type="radio" id="chickenKatsuSelect" name="drone" value="Chicken Katsu"
+          [(ngModel)]="selectedOption" unchecked />
+        <label for="chickenKatsuSelect">Chicken Katsu</label>
+      </div>
+      <div>
+        <input required type="radio" id="porkKatsuSelect" name="drone" value="Pork Katsu" [(ngModel)]="selectedOption"
+          unchecked />
+        <label for="porkKatsuSelect">Pork Katsu</label>
+      </div>
+      <div>
+        <input required type="radio" id="chickenVegTempSelect" name="drone" value="Chicken & Vegetable Tempura"
+          [(ngModel)]="selectedOption" unchecked />
+        <label for="chickenVegTempSelect">Chicken & Vegetable Tempura</label>
+      </div>
+      <div>
+        <input required type="radio" id="shrimpVegTempSelect" name="drone" value="Shrimp & Vegetable Tempura"
+          [(ngModel)]="selectedOption" unchecked />
+        <label for="shrimpVegTempSelect">Shrimp & Vegetable Tempura</label>
+      </div>
+    </fieldset>
+  </div>
+  <!--Options for Choose 2 Bento Box-->
+  <div class="options" *ngIf="selectedItem.name == 'Choose 2 Bento Box'">
+    <fieldset>
+      <h5>Select 2 proteins:</h5>
+      <div>
+        <input required type="checkbox" id="tofuSelect" name="drone" (change)="choose2('Tofu Teriyaki')" unchecked />
+        <label for="tofuSelect">Tofu Teriyaki</label>
+      </div>
+      <div>
+        <input required type="checkbox" id="beefSelect" name="drone" (change)="choose2('Beef Teriyaki')" unchecked />
+        <label for="beefSelect">Beef Teriyaki</label>
+      </div>
+      <div>
+        <input required type="checkbox" id="chickenSelect" name="drone" (change)="choose2('Chicken Teriyaki')"
+          unchecked />
+        <label for="chickenSelect">Chicken Teriyaki</label>
+      </div>
+      <div>
+        <input required type="checkbox" id="salmonSelect" name="drone" (change)="choose2('Tofu Teriyaki')" unchecked />
+        <label for="salmonSelect">Salmon Teriyaki</label>
+      </div>
+      <div>
+        <input required type="checkbox" id="chickenKatsuSelect" name="drone" (change)="choose2('Chicken Katsu')"
+          unchecked />
+        <label for="chickenKatsuSelect">Chicken Katsu</label>
+      </div>
+      <div>
+        <input required type="checkbox" id="porkKatsuSelect" name="drone" (change)="choose2('Pork Katsu')" unchecked />
+        <label for="porkKatsuSelect">Pork Katsu</label>
+      </div>
+      <div>
+        <input required type="checkbox" id="chickenVegTempSelect" name="drone"
+          (change)="choose2('Chicken & Vegetable Tempura')" unchecked />
+        <label for="chickenVegTempSelect">Chicken & Vegetable Tempura</label>
+      </div>
+      <div>
+        <input required type="checkbox" id="shrimpVegTempSelect" name="drone"
+          (change)="choose2('Shrimp & Vegetable Tempura')" unchecked />
+        <label for="shrimpVegTempSelect">Shrimp & Vegetable Tempura</label>
+      </div>
+    </fieldset>
+  </div>
+  <!--Options for Any 2 Rolls-->
+  <div class="options" *ngIf="selectedItem.name == 'Any 2 Rolls'">
+    <fieldset>
+      <h5>Select 2 rolls:</h5>
+      <div class="twoCols">
+        <div>
+          <input required type="checkbox" id="tunaSelect" name="drone" (change)="choose2('Tuna Roll')" unchecked />
+          <label for="tunaSelect">Tuna</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="salmonSelect" name="drone" (change)="choose2('Salmon Roll')" unchecked />
+          <label for="salmonSelect">Salmon</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="yellowTailSelect" name="drone" (change)="choose2('YellowTail Roll')"
+            unchecked />
+          <label for="yellowTailSelect">YellowTail</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="tunaAvoSelect" name="drone" (change)="choose2('Tuna Avocado Roll')"
+            unchecked />
+          <label for="tunaAvoSelect">Tuna Avocado</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="salmonAvoSelect" name="drone" (change)="choose2('Salmon Avocado Roll')"
+            unchecked />
+          <label for="salmonAvoSelect">Salmon Avocado</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="yellowTailAvoSelect" name="drone"
+            (change)="choose2('YellowTail Avocado Roll')" unchecked />
+          <label for="yellowTailAvoSelect">YellowTail Avocado</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="californiaSelect" name="drone" (change)="choose2('California Roll')"
+            unchecked />
+          <label for="californiaSelect">California</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="spTunaSelect" name="drone" (change)="choose2('Spicy Tuna Roll')"
+            unchecked />
+          <label for="spTunaSelect">Spicy Tuna</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="spSalmonSelect" name="drone" (change)="choose2('Spicy Salmon Roll')"
+            unchecked />
+          <label for="spSalmonSelect">Spicy Salmon</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="spCrabSelect" name="drone" (change)="choose2('Spicy Crab Meat Roll')"
+            unchecked />
+          <label for="spCrabSelect">Spicy Crab Meat</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="shrimpTempSelect" name="drone" (change)="choose2('Shrimp Tempura Roll')"
+            unchecked />
+          <label for="shrimpTempSelect">Shrimp Tempura</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="philSelect" name="drone" (change)="choose2('Philadelphia Roll')"
+            unchecked />
+          <label for="philSelect">Philadelphia</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="chickenTempSelect" name="drone" (change)="choose2('Chicken Tempura Roll')"
+            unchecked />
+          <label for="chickenTempSelect">Chicken Tempura</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="steakTempSelect" name="drone" (change)="choose2('Steak Tempura Roll')"
+            unchecked />
+          <label for="steakTempSelect">Steak Tempura</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="oshinkSelect" name="drone" (change)="choose2('Oshinko Roll')" unchecked />
+          <label for="oshinkSelect">Oshinko</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="eelCuSelect" name="drone" (change)="choose2('Eel Cucumber Roll')"
+            unchecked />
+          <label for="eelCuSelect">Eel Cucumber</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="eelAvoSelect" name="drone" (change)="choose2('Eel Avocado Roll')"
+            unchecked />
+          <label for="eelAvoSelect">Eel Avocado</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="cucumSelect" name="drone" (change)="choose2('Cucumber Roll')" unchecked />
+          <label for="cucumSelect">Cucumber</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="avoSelect" name="drone" (change)="choose2('Avocado Roll')" unchecked />
+          <label for="avoSelect">Avocado</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="aacSelect" name="drone" (change)="choose2('AAC Roll')" unchecked />
+          <label for="aacSelect">AAC</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="sweetPoSelect" name="drone" (change)="choose2('Sweet Potato Roll')"
+            unchecked />
+          <label for="sweetPoSelect">Sweet Potato</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="bostonSelect" name="drone" (change)="choose2('Boston Roll')" unchecked />
+          <label for="bostonSelect">Boston</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="alaskaSelect" name="drone" (change)="choose2('Alaska Roll')" unchecked />
+          <label for="alaskaSelect">Alaska</label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <!--Options for Any 3 Rolls-->
+  <div class="options" *ngIf="selectedItem.name == 'Any 3 Rolls'">
+    <fieldset>
+      <h5>Select 3 rolls:</h5>
+      <div class="twoCols">
+        <div>
+          <input required type="checkbox" id="tunaSelect" name="drone" (change)="choose3('Tuna Roll')" unchecked />
+          <label for="tunaSelect">Tuna</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="salmonSelect" name="drone" (change)="choose3('Salmon Roll')" unchecked />
+          <label for="salmonSelect">Salmon</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="yellowTailSelect" name="drone" (change)="choose3('YellowTail Roll')"
+            unchecked />
+          <label for="yellowTailSelect">YellowTail</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="tunaAvoSelect" name="drone" (change)="choose3('Tuna Avocado Roll')"
+            unchecked />
+          <label for="tunaAvoSelect">Tuna Avocado</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="salmonAvoSelect" name="drone" (change)="choose3('Salmon Avocado Roll')"
+            unchecked />
+          <label for="salmonAvoSelect">Salmon Avocado</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="yellowTailAvoSelect" name="drone"
+            (change)="choose3('YellowTail Avocado Roll')" unchecked />
+          <label for="yellowTailAvoSelect">YellowTail Avocado</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="californiaSelect" name="drone" (change)="choose3('California Roll')"
+            unchecked />
+          <label for="californiaSelect">California</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="spTunaSelect" name="drone" (change)="choose3('Spicy Tuna Roll')"
+            unchecked />
+          <label for="spTunaSelect">Spicy Tuna</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="spSalmonSelect" name="drone" (change)="choose3('Spicy Salmon Roll')"
+            unchecked />
+          <label for="spSalmonSelect">Spicy Salmon</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="spCrabSelect" name="drone" (change)="choose3('Spicy Crab Meat Roll')"
+            unchecked />
+          <label for="spCrabSelect">Spicy Crab Meat</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="shrimpTempSelect" name="drone" (change)="choose3('Shrimp Tempura Roll')"
+            unchecked />
+          <label for="shrimpTempSelect">Shrimp Tempura</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="philSelect" name="drone" (change)="choose3('Philadelphia Roll')"
+            unchecked />
+          <label for="philSelect">Philadelphia</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="chickenTempSelect" name="drone" (change)="choose3('Chicken Tempura Roll')"
+            unchecked />
+          <label for="chickenTempSelect">Chicken Tempura</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="steakTempSelect" name="drone" (change)="choose3('Steak Tempura Roll')"
+            unchecked />
+          <label for="steakTempSelect">Steak Tempura</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="oshinkSelect" name="drone" (change)="choose3('Oshinko Roll')" unchecked />
+          <label for="oshinkSelect">Oshinko</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="eelCuSelect" name="drone" (change)="choose3('Eel Cucumber Roll')"
+            unchecked />
+          <label for="eelCuSelect">Eel Cucumber</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="eelAvoSelect" name="drone" (change)="choose3('Eel Avocado Roll')"
+            unchecked />
+          <label for="eelAvoSelect">Eel Avocado</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="cucumSelect" name="drone" (change)="choose3('Cucumber Roll')" unchecked />
+          <label for="cucumSelect">Cucumber</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="avoSelect" name="drone" (change)="choose3('Avocado Roll')" unchecked />
+          <label for="avoSelect">Avocado</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="aacSelect" name="drone" (change)="choose3('AAC Roll')" unchecked />
+          <label for="aacSelect">AAC</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="sweetPoSelect" name="drone" (change)="choose3('Sweet Potato Roll')"
+            unchecked />
+          <label for="sweetPoSelect">Sweet Potato</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="bostonSelect" name="drone" (change)="choose3('Boston Roll')" unchecked />
+          <label for="bostonSelect">Boston</label>
+        </div>
+        <div>
+          <input required type="checkbox" id="alaskaSelect" name="drone" (change)="choose3('Alaska Roll')" unchecked />
+          <label for="alaskaSelect">Alaska</label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <label class="additionalInstructions" for="individualNotes">Additional Notes:</label>
+  <textarea [(ngModel)]="selectedItem.individualNotes"
+    placeholder="Special requests may be subject to additional charges..." id="popup-input"></textarea>
+  <div class="qcsubmit-span">
+    <div class="quantity-control">
+      <button (click)="quantitySubtract()"> - </button>
+      <span>{{ selectedQuantity }}</span>
+      <button (click)="quantityAdd()"> + </button>
     </div>
+    <button class="submitButton" (click)="addToCart()">Add to Cart</button>
+  </div>
 </div>
+
 <!-- LOADING ANIMATION WHILE WAITING FOR API -->
 <div class="loader" *ngIf="menu.length===0 && categories.length===0"></div>
 
+<input class="searchbar" *ngIf="menu.length!=0 && categories.length!=0" type="text" placeholder={{searchPlaceholder}}
+  [(ngModel)]="search" (input)="updateSearch()">
+
 <!-- MENU -->
-<div *ngFor= "let category of selectedCategories;">
-    <div class="category-container">
-        <h1 class="category">{{category}}</h1>
+<div *ngFor="let category of selectedCategories ;">
+  <div class="category-container" *ngIf="display != undefined && display.get(category) != undefined && display.get(category)!.length > 0">
+    
+    <h1 class="category">{{category}}</h1>
 
-        <!-- Specific category descriptions -->
-        <div *ngIf="category == 'Sushi/Sashimi'">
-            <h5> (Served 2 peices per order) </h5>
-        </div>
-        <div *ngIf="category == 'Sushi Bar Entrees'">
-            <h5> (Chef's choice of sushi & sashimi, served with miso soup and salad) </h5>
-        </div>
-        <div *ngIf="category == 'Chinese & Thai Entrees'">
-            <h5> (Served with white rice) </h5>
-        </div>
-        <div *ngIf="category == 'Teriyaki Entrees'">
-            <h5> (Served with white rice) </h5>
-        </div>
-        <div *ngIf="category == 'Tempura Entrees'">
-            <h5> (Deep fried with tempura sauce on side. Served with miso soup and salad) </h5>
-        </div>
-        <div *ngIf="category == 'Hibachi Entrees'">
-            <h5> (Served with clear soup, salad, 2 pc. hibachi shrimp & frice rice) </h5>
-        </div>
-        <div *ngIf="category == 'Udon Noodles'">
-            <h5> (Served with miso soup and salad) </h5>
-        </div>
-        <div *ngIf="category == 'Udon In Soup'">
-            <h5> (Served with salad) </h5>
-        </div>
-        <div *ngIf="category == 'Sushi Bar Lunch'">
-            <h5> (Chef's choice of sushi & sashimi, served with miso soup and salad) </h5>
-        </div>
-        <div *ngIf="category == 'Signature Lunch Special'">
-            <h5> (Served with a choice of seaweed salad or spicy kani salad) </h5>
-        </div>
-        <div *ngIf="category == 'Maki Lunch'">
-            <h5> (Served with soup and salad) </h5>
-        </div>
-        <div *ngIf="category == 'Lunch Special Bento Box'">
-            <h5> (Served with salad, miso soup, white rice, California roll, shumai & vegetables) </h5>
-        </div>
-        <div *ngIf="category == 'Hibachi Lunch Special'">
-            <h5> (Served with salad, clear soup, fried rice & vegetables) </h5>
-        </div>
-        <div *ngIf="category == 'Sushi Appetizers'">
-            <h5> (Chef's choice of sushi & sashimi) </h5>
-        </div>
-        <div *ngIf="category == 'Donburi'">
-            <h5> (Served with soup and salad) </h5>
-        </div>
-
-        <!-- actual item -->
-        <div class="item-container">
-            <div class="item" *ngFor="let item of display.get(category)" (click)="select(item)">
-                <h4>{{item.name}} - ${{item.price}}</h4>
-                <p *ngIf="item.description != 'NULL'">{{item.description}}</p>
-            </div>
-        </div>
+    <!-- Specific category descriptions -->
+    <div *ngIf="category == 'Sushi/Sashimi'">
+      <h5> (Served 2 peices per order) </h5>
     </div>
-</div>
+    <div *ngIf="category == 'Sushi Bar Entrees'">
+      <h5> (Chef's choice of sushi & sashimi, served with miso soup and salad) </h5>
+    </div>
+    <div *ngIf="category == 'Chinese & Thai Entrees'">
+      <h5> (Served with white rice) </h5>
+    </div>
+    <div *ngIf="category == 'Teriyaki Entrees'">
+      <h5> (Served with white rice) </h5>
+    </div>
+    <div *ngIf="category == 'Tempura Entrees'">
+      <h5> (Deep fried with tempura sauce on side. Served with miso soup and salad) </h5>
+    </div>
+    <div *ngIf="category == 'Hibachi Entrees'">
+      <h5> (Served with clear soup, salad, 2 pc. hibachi shrimp & frice rice) </h5>
+    </div>
+    <div *ngIf="category == 'Udon Noodles'">
+      <h5> (Served with miso soup and salad) </h5>
+    </div>
+    <div *ngIf="category == 'Udon In Soup'">
+      <h5> (Served with salad) </h5>
+    </div>
+    <div *ngIf="category == 'Sushi Bar Lunch'">
+      <h5> (Chef's choice of sushi & sashimi, served with miso soup and salad) </h5>
+    </div>
+    <div *ngIf="category == 'Signature Lunch Special'">
+      <h5> (Served with a choice of seaweed salad or spicy kani salad) </h5>
+    </div>
+    <div *ngIf="category == 'Maki Lunch'">
+      <h5> (Served with soup and salad) </h5>
+    </div>
+    <div *ngIf="category == 'Lunch Special Bento Box'">
+      <h5> (Served with salad, miso soup, white rice, California roll, shumai & vegetables) </h5>
+    </div>
+    <div *ngIf="category == 'Hibachi Lunch Special'">
+      <h5> (Served with salad, clear soup, fried rice & vegetables) </h5>
+    </div>
+    <div *ngIf="category == 'Sushi Appetizers'">
+      <h5> (Chef's choice of sushi & sashimi) </h5>
+    </div>
+    <div *ngIf="category == 'Donburi'">
+      <h5> (Served with soup and salad) </h5>
+    </div>
+    
 
+    <!-- actual item -->
+    <div class="item-container">
+      <div class="item" *ngFor="let item of display.get(category)" (click)="select(item)">
+        <h4>{{item.name}} - ${{item.price}}</h4>
+        <p *ngIf="item.description != 'NULL'">{{item.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>
