@@ -62,16 +62,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "proxyConfig": "src/proxy.conf.json"
+            
           },
           "configurations": {
             "production": {
-              "buildTarget": "Sakura:build:production",
-              "proxyConfig": "src/proxy-config.json"
+              "buildTarget": "Sakura:build:production"
             },
             "development": {
-              "buildTarget": "Sakura:build:development",
-              "proxyConfig": "src/proxy-config.json"
+              "buildTarget": "Sakura:build:development"
             }
           },
           

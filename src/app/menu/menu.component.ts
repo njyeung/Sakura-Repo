@@ -35,7 +35,6 @@ export class MenuComponent {
     else{
       this.displayCategories = [...this.selectedCategories];
     }
-    console.log('scrolling')
     window.scrollTo(0,0);
   }
 

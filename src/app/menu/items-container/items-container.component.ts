@@ -58,26 +58,7 @@ export class ItemsContainerComponent {
     });
 
     // Filters based on search params
-    if(this.search != "") {
-      this.display.forEach((itemList: MenuItem[], category: String)=> {
-        var temp: MenuItem[] = []
-        itemList.forEach((item)=> {
-          var normalizedSearch = this.normalize(this.search)
-          if(
-            this.normalize(item.name).includes(normalizedSearch) ||
-            this.normalize(item.description).includes(normalizedSearch) || 
-            this.normalize(item.category).includes(normalizedSearch) ||
-            this.normalize(item.price.toString()).includes(normalizedSearch)
-          ) {
-            temp.push(item);
-          }
-          this.display.set(category, temp)
-          if(this.display.get(category) == null||this.display.get(category) == undefined||this.display.get(category)?.length == 0) {
-            this.display.delete(category);
-          }
-        })
-      })
-    }
+    this.searchAlgo();
 
     // Animation for search bar
     if(localStorage.getItem('search') != null) {
@@ -103,9 +84,70 @@ export class ItemsContainerComponent {
   }
 
   normalize(name: string) {
-    return name.trim().toLowerCase().replace(/\s/g, '').replace('&', 'and');
+    return name.trim().toLowerCase().replace(/\s+/g, '+').replaceAll('&', 'and').replaceAll('.','');
   }
 
+  getTokens(name: string): string[] {
+    var normalized = this.normalize(name)
+    var tokenlist = normalized.split('+')
+    if(tokenlist.length == 1 && tokenlist[0] == '') {
+      return [];
+    }
+    return tokenlist;
+  }
+
+  searchAlgo(){
+    if(this.normalize(this.search) != "") {
+      var temp: [MenuItem, number][] = []
+
+      this.display.forEach((itemList: MenuItem[], category: String)=> {
+        itemList.forEach((item)=> {
+          var tokens = this.getTokens(this.search)
+          var normalizedName = this.normalize(item.name)
+          var normalizedDescription = this.normalize(item.description)
+          var noramlizedCategory = this.normalize(item.category)
+          var normalizedPrice = this.normalize(item.price.toString())
+          var weight = 0;
+
+          for(let i = 0; i<tokens.length; i++) {
+            var token = tokens[i];
+            if(
+              normalizedName.includes(token) ||
+              normalizedDescription.includes(token) ||
+              normalizedPrice.includes(token)) 
+            {
+              weight++;
+            }
+          }
+          if(weight>0) temp.push([item, weight])
+        });
+      });
+
+      var maxWeight = 0;
+      for(let i = 0; i<temp.length; i++) {
+        if(temp[i][1]>maxWeight) maxWeight = temp[i][1];
+      }
+      var result: MenuItem[] = []
+      for(let i = temp.length-1; i>=0; i--) {
+        if(temp[i][1] == maxWeight) {
+          result.push(temp[i][0])
+        }
+      }
+      
+      this.display.forEach((itemList: MenuItem[], category: String)=> {
+        var temp:MenuItem[] = []
+        itemList.forEach((item)=> {
+          if(result.includes(item)) {
+            temp.push(item)
+          }
+        });
+        this.display.set(category, temp) // dunno if I need to do this  
+        if(this.display.get(category) == null||this.display.get(category) == undefined||this.display.get(category)?.length == 0) {
+          this.display.delete(category);
+        }
+      });
+    }
+  }
   selectedItem : MenuItem|undefined = undefined;
   selectedQuantity: number = 1;
 
@@ -137,7 +179,6 @@ export class ItemsContainerComponent {
     else{
       this.select2Options.push(option);
     }
-    console.log(this.select2Options);
   }
   choose3(option: string) {
     if(this.select3Options.includes(option)) {
@@ -146,7 +187,6 @@ export class ItemsContainerComponent {
     else{
       this.select3Options.push(option);
     }
-    console.log(this.select3Options);
   }
 
   addToCart() {
