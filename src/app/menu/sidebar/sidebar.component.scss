@@ -20,6 +20,7 @@ input[type='checkbox'] {
     }
     .categories-container {
         display: grid;
+        font-size: 13px;
         grid-template-columns: 1fr 1fr;
     }
 }

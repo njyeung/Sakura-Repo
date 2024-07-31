@@ -1,6 +1,9 @@
 <!-- POPUP -->
 <div class="overlay" *ngIf="selectedItem != undefined" (click)="closePopup()"></div>
+
 <div class="popup" *ngIf="selectedItem != undefined">
+  <button class="x" (click)="closePopup()"> ✕ </button>
+
   <h2>{{ selectedItem.name }}</h2>
   <p *ngIf="selectedItem.description!='NULL'">{{ selectedItem.description }}</p>
 
@@ -409,8 +412,12 @@
 <!-- LOADING ANIMATION WHILE WAITING FOR API -->
 <div class="loader" *ngIf="menu.length===0 && categories.length===0"></div>
 
-<input class="searchbar" *ngIf="menu.length!=0 && categories.length!=0" type="text" placeholder={{searchPlaceholder}}
+<!-- SEARCH BAR -->
+<div class="searchbar-container">
+  <input class="searchbar" *ngIf="menu.length!=0 && categories.length!=0" type="text" placeholder={{searchPlaceholder}}
   [(ngModel)]="search" (input)="updateSearch()">
+</div>
+
 
 <!-- MENU -->
 <div *ngFor="let category of selectedCategories ;">
