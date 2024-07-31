@@ -114,7 +114,9 @@ export class ItemsContainerComponent {
             if(
               normalizedName.includes(token) ||
               normalizedDescription.includes(token) ||
-              normalizedPrice.includes(token)) 
+              normalizedPrice.includes(token) ||
+              noramlizedCategory.includes(token)
+            )
             {
               weight++;
             }

@@ -418,9 +418,8 @@
   [(ngModel)]="search" (input)="updateSearch()">
 </div>
 
-
 <!-- MENU -->
-<div *ngFor="let category of selectedCategories ;">
+<div *ngFor="let category of selectedCategories;">
   <div class="category-container" *ngIf="display != undefined && display.get(category) != undefined && display.get(category)!.length > 0">
     
     <h1 class="category">{{category}}</h1>

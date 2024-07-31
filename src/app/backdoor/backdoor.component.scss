@@ -1,16 +1,37 @@
 .admin-panel {
-    padding: 20px;
-    max-width: 600px;
+    padding: 60px;
     margin: 0 auto;
 }
-  
+
 .section {
     margin-bottom: 20px;
 }
-  
+.waittime {
+    display: flex;
+    flex-direction: row;
+} 
 .item {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+}
+.login {
+    margin: 0 auto;
+    width: 500px;
+    text-align: center;
+}
+.add-item-form {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 1080px) {
+    .admin-panel {
+        padding: 20px;
+    }
+    .add-item-form{
+        display: flex;
+        flex-direction: column;
+    }
 }

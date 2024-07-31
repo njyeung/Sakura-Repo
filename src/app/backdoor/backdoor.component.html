@@ -1,4 +1,4 @@
-<div *ngIf="displayPage == false">
+<div class="login" *ngIf="displayPage == false">
     <h2>Enter backdoor password:</h2>
     <form (submit)="submitPassword(input.value)">
         <input #input>
@@ -7,36 +7,37 @@
 </div>
 
 <div *ngIf="displayPage == true" class="admin-panel">
-    <h1>Admin Panel</h1>
-    
-    <!-- Adjust Wait Time Section -->
-    <div class="section">
-      <h5>Adjust Wait Time</h5>
-      <label for="wait-time">Wait Time (minutes): &nbsp;</label>
-      <input type="number" id="wait-time" [(ngModel)]="waitTime" />
-      <button (click)="updateWaitTime()">Update</button>
-    </div>
+  <h1>Admin Panel</h1>
   
-    <!-- Temporarily Close Section -->
-    <div class="section">
-      <h5>Temporarily Close</h5>
-      <button [ngStyle]="{'backgroundColor': isClosed == false ? 'rgb(187, 0, 0)' : 'green' }" (click)="toggleClose()">{{ isClosed ? 'Reopen' : 'Close' }}</button>
-    </div>
-  
-    <!-- Manage Items Section -->
-    <div class="section">
-      <h5>Manage Items</h5>
-      <div *ngFor="let item of rolls" class="item">
-        <p>{{ item.name }} - {{item.description}} - ${{ item.price }}</p>
-        <button (click)="removeItem(item)">Remove</button>
-      </div>
-  
-      <h6>Add New Item</h6>
-      <form (ngSubmit)="addItem()">
-        <input type="text" [(ngModel)]="newRoll.name" placeholder="Name" name="name" required />
-        <input type="number" [(ngModel)]="newRoll.price" placeholder="Price" name="price" required />
-        <input type="text" [(ngModel)]="newRoll.description" placeholder="Description" name="description" />
-        <button type="submit">Add</button>
-      </form>
-    </div>
+  <!-- Adjust Wait Time Section -->
+  <h5>Adjust Wait Time</h5>
+  <label for="wait-time">Wait Time (minutes): &nbsp;</label>
+  <div class="section waittime">
+    <input type="number" id="wait-time" [(ngModel)]="waitTime" />
+    <button (click)="updateWaitTime()">Update</button>
   </div>
+
+  <!-- Temporarily Close Section -->
+  <h5>Temporarily Close</h5>
+  <div class="section">
+    <button [ngStyle]="{'backgroundColor': isClosed == false ? 'rgb(187, 0, 0)' : 'green' }" (click)="toggleClose()">{{ isClosed ? 'Reopen' : 'Close' }}</button>
+  </div>
+
+  <!-- Manage Items Section -->
+  <h5>Manage Items</h5>
+  <div *ngFor="let item of rolls" class="section item">
+    <p>{{ item.name }} - {{item.description}} - ${{ item.price }}</p>
+    <button (click)="removeItem(item)">Remove</button>
+  </div>
+
+  <h5>Add New Item</h5>
+  <form (ngSubmit)="addItem()" class="section add-item-form">
+    <input type="text" [(ngModel)]="newRoll.name" placeholder="Name" name="name" required />
+    <input type="number" [(ngModel)]="newRoll.price" placeholder="Price" name="price" required />
+    <input type="text" [(ngModel)]="newRoll.description" placeholder="Description" name="description" />
+    <button type="submit">Add</button>
+  </form>
+
+  <h5>Recent Orders</h5>
+  
+</div>
