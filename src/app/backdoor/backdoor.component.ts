@@ -45,6 +45,10 @@ export class BackdoorComponent {
     });
   }
 
+  viewRecentOrder() {
+    window.open(this.backdoorService.recent(this.password));
+  }
+  
   updateWaitTime(){
     this.backdoorService.setWaittime(this.waitTime, this.password).subscribe(result=>{
         if(result == true) {

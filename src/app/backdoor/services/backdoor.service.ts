@@ -10,8 +10,14 @@ export class BackdoorService {
 
   constructor(private http: HttpClient) { }
 
+  //endPoint: String = "https://localhost:7051";
   endPoint: String = "https://sakurabackend.azurewebsites.net";
 
+  // Get recent order
+  recent(password: string) {
+    return this.endPoint + `/api/order/recent/${password}`
+  }
+  
   // Check if password is correct
   check(password: string) {
     let params = new HttpParams()

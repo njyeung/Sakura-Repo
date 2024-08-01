@@ -14,7 +14,7 @@ export class CartService {
   })};
   
   constructor(private http: HttpClient) { }
-
+  //endPoint: String = "https://localhost:7051";
   endPoint: String = "https://sakurabackend.azurewebsites.net";
 
   // Returns the current day
