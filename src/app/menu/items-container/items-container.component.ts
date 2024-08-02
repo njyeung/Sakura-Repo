@@ -195,6 +195,14 @@ export class ItemsContainerComponent {
     // Procedure for items that have selection
     var category: string|undefined = this.selectedItem?.category;
     var name: string|undefined = this.selectedItem?.name;
+
+    if(this.selectedItem?.individualNotes != undefined) {
+      this.selectedItem.individualNotes = this.selectedItem.individualNotes.trim();
+      if(this.selectedItem.individualNotes.length == 0) {
+        this.selectedItem.individualNotes = undefined;
+      } 
+    } 
+    
     // Choose 1
     if(category == "Sushi/Sashimi" || name == "Thai Curry Vegetable" || name == "Thai Curry Chicken" || name == "Thai Curry Shrimp" || name == "Thai Curry Beef" || name == "Thai Basil" || name == "Choose 1 Bento Box") {
       if (!this.selectedOption) {

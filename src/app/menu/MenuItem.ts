@@ -5,5 +5,5 @@ export interface MenuItem {
     description: string
     imageUrl: string
     category: string
-    individualNotes: string
+    individualNotes: string | undefined
 }
