@@ -196,6 +196,7 @@ export class ItemsContainerComponent {
     var category: string|undefined = this.selectedItem?.category;
     var name: string|undefined = this.selectedItem?.name;
 
+    // Trim individual notes and set to undefined if length is 0
     if(this.selectedItem?.individualNotes != undefined) {
       this.selectedItem.individualNotes = this.selectedItem.individualNotes.trim();
       if(this.selectedItem.individualNotes.length == 0) {
